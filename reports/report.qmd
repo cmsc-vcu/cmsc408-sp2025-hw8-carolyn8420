@@ -1,3 +1,4 @@
+
 ---
 title: Homework 8 - World Bank Analysis
 ---
@@ -41,7 +42,6 @@ where
 # Exercises
 
 In the following exercises, write the SQL as requested to discover the answer.
-
 
 ## Task 1
 
