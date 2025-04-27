@@ -54,7 +54,7 @@ How many records are in the country table?
 # (skills: select, aggregate)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 select
  count(*) as "Row Count"
 from
@@ -201,7 +201,7 @@ What are all unique values of region in the wdi_country table?
 ## (skills: select, aggregate, order by)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 select
   region
 from
@@ -229,7 +229,7 @@ How many countries are in each region?
 ## (skills: select, aggregate, group by, order by)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 select
   region,
   count(region) as "# Countries"
@@ -256,7 +256,7 @@ List the country full names and regions for all countries in north america.
 ## (skills: select, where, order by)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 select
   region,
   `Long Name`
@@ -282,7 +282,7 @@ order by
 ## (skills: select, where)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 select
   region,
   `Short Name` ,
@@ -328,7 +328,7 @@ where
 ## (skills: select, aggregate, group by, order by)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 select
   `Income Group` ,
   count(*)
@@ -419,7 +419,7 @@ where
 ## (skills: select, aggregate, group by, order by)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 SELECT
   region,
   `Income Group` AS income_group,
@@ -456,7 +456,7 @@ ORDER BY
 ## (skills: select, aggregate, group by, nested query)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 SELECT
   region,
   SUM(CASE WHEN `Income Group` = 'Low income' THEN 1 ELSE 0 END) AS `Low Income`,
@@ -758,7 +758,7 @@ ORDER BY
 ## (This is much simpler than task 20!)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 WITH 
 income_cte AS (
     SELECT `Income Group`, COUNT(*) AS income_cnt
