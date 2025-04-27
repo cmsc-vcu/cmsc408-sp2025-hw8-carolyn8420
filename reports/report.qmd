@@ -633,16 +633,19 @@ WITH
 region_cte AS (
     SELECT region, COUNT(*) AS region_cnt 
     FROM wdi_country
+    WHERE region IS NOT NULL
     GROUP BY region
 ), 
 income_cte AS (
     SELECT `Income Group`, COUNT(*) AS income_cnt
     FROM wdi_country
+    WHERE `Income Group` IS NOT NULL
     GROUP BY `Income Group`
 ), 
 total_cte AS (
     SELECT COUNT(*) AS total_cnt
     FROM wdi_country
+    WHERE region IS NOT NULL AND `Income Group` IS NOT NULL
 ), 
 pair_cte AS (
     SELECT
@@ -651,6 +654,9 @@ pair_cte AS (
         COUNT(*) AS pair_cnt
     FROM
         wdi_country
+    WHERE
+        region IS NOT NULL
+        AND `Income Group` IS NOT NULL
     GROUP BY
         region, `Income Group`
 ), 
@@ -667,9 +673,10 @@ merge_cte AS (
         pair_cte a
         LEFT JOIN region_cte b ON a.region = b.region
         LEFT JOIN income_cte c ON a.`Income Group` = c.`Income Group`
-        LEFT JOIN total_cte d ON 1 = 1
+        CROSS JOIN total_cte d
 )
-SELECT * FROM merge_cte
+SELECT * 
+FROM merge_cte
 ORDER BY region, `Income Group`;
 
 """)
