@@ -419,7 +419,7 @@ where
 ## (skills: select, aggregate, group by, order by)
 
 
-run_sql_and_return_html(cnx,"""
+run_sql_and_return_df(cnx,"""
 SELECT
   region,
   `Income Group` AS income_group,
