@@ -628,7 +628,7 @@ where
 ## (skills: select, where, subqueries, joins, aggregate functions)
 
 
-run_sql_and_return_html(cnx,"""
+run_sql_and_return_df(cnx,"""
 WITH 
 region_cte AS (
     SELECT region, COUNT(*) AS region_cnt 
@@ -662,12 +662,12 @@ merge_cte AS (
         b.region_cnt,
         c.income_cnt,
         d.total_cnt,
-        ROUND((100.0 * a.pair_cnt / d.total_cnt), 1) AS `Pct of Total`
+        ROUND(100.0 * a.pair_cnt / d.total_cnt, 1) AS `Pct of Total`
     FROM
         pair_cte a
         LEFT JOIN region_cte b ON a.region = b.region
         LEFT JOIN income_cte c ON a.`Income Group` = c.`Income Group`
-        CROSS JOIN total_cte d
+        LEFT JOIN total_cte d ON 1 = 1
 )
 SELECT * FROM merge_cte
 ORDER BY region, `Income Group`;
@@ -758,11 +758,12 @@ ORDER BY
 ## (This is much simpler than task 20!)
 
 
-run_sql_and_return_html(cnx,"""
+run_sql_and_return_df(cnx,"""
 WITH 
 income_cte AS (
     SELECT `Income Group`, COUNT(*) AS income_cnt
     FROM wdi_country
+    WHERE `Income Group` IS NOT NULL
     GROUP BY `Income Group`
 ),
 total_cte AS (
@@ -787,11 +788,11 @@ ORDER BY
 
 # Reflection
 
-I feel pretty confident in my ability to write basic SQL queries, especially SELECT statements, and using WHERE clauses to filter data.  However, I think I could use more practice with more advanced SQL concepts, like subqueries and window functions. This assignment definitely helped my skills in working with databases, especially in designing and structuring tables with DDL, running queries to retrieve meaningful data, and displaying it in a clear format.
+I feel pretty confident in my ability to write basic SQL queries, especially SELECT statements. However, I think I could use more practice with subqueries and window functions. This assignment definitely helped my skills in working with databases, especially in designing and structuring tables with DDL, running queries to retrieve meaningful data, and displaying it in a clear format.
 
-To tackle the more complex tasks I start by carefully analyzing the problem and breaking it down into smaller, manageable subtasks. I implement the solution step-by-step, testing along the way to catch errors. I would write an SQL query to find any missing combinations of region and income group. I’d then check the results for correctness. I would also generate the percentage tables first by calculating the total counts for each region and income group, then calculating the percentages. I verify the results and reflect on any improvements for future tasks, ensuring the solution is both accurate and optimized.
+To tackle the more complex tasks I start by carefully analyzing the problem and breaking it down into smaller, manageable subtasks. I implement the solution step-by-step, testing along the way to catch errors. I would write an SQL query to find any missing combinations of region and income group. I’d then check the results for correctness. I would also generate the percentage tables first by calculating the total counts for each region and income group, then calculating the percentages.
 
-The biggest takeaways from this assignment were understanding data relationships, SQL queries for data manipulation, and using transformations to analyze data efficiently. I learned how to perform complex operations like aggregation, filtering, and updating data, as well as dealing with missing or inconsistent data. These skills will be helpful in real-world scenarios, especially when working with large datasets or managing databases. In future coursework, the ability to apply SQL for data analysis will help with tasks and projects.
+The biggest takeaways from this assignment were understanding data relationships, SQL queries for data manipulation, and using transformations to analyze data efficiently. I learned how to perform complex operations like filtering, and updating data, as well as dealing with missing or inconsistent data. These skills will be helpful in real-world scenarios, especially when working with large datasets or managing databases. In future coursework, the ability to apply SQL for data analysis will help with tasks and projects.
 
 
 # README
