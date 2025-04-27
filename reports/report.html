@@ -3160,7 +3160,7 @@ vertical-align: -.125em;
 <p>GITHUB URL: https://github.com/cmsc-vcu/cmsc408-sp2025-hw8-carolyn8420</p>
 <section id="problem-background" class="level1">
 <h1>Problem Background</h1>
-<div id="d57b8d80" class="cell" data-execution_count="1">
+<div id="58ad1251" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> helpers <span class="im">import</span> create_database_engine, run_sql_and_return_df, run_sql_and_return_html, create_db_wrapper, execute_ddl_from_file, execute_ddl</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load these variables from .env file.</span></span>
@@ -3173,7 +3173,7 @@ vertical-align: -.125em;
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>cnx,config <span class="op">=</span> create_db_wrapper( config_map )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="52d37a6d" class="cell" data-execution_count="2">
+<div id="0d456bec" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Do a quick test of the connection and trap the errors better!</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx,<span class="st">&quot;&quot;&quot;</span></span>
@@ -3192,11 +3192,15 @@ vertical-align: -.125em;
 <tr>
 
 <th>
-ErrorType
+TABLE_SCHEMA
 </th>
 
 <th>
-ErrorMessage
+TABLE_NAME
+</th>
+
+<th>
+TABLE_ROWS
 </th>
 
 </tr>
@@ -3208,18 +3212,54 @@ ErrorMessage
 <tr>
 
 <td>
-UnknownError
+world_bank_data
 </td>
 
 <td>
-Unknown Error: &#39;NoneType&#39; object has no attribute &#39;cursor&#39;
+wdi_country
+</td>
+
+<td>
+265
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+
+<td>
+world_bank_data
+</td>
+
+<td>
+wdi_data
+</td>
+
+<td>
+369046
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+world_bank_data
+</td>
+
+<td>
+wdi_series
+</td>
+
+<td>
+1395
+</td>
+
+</tr>
+
+<tr>
+<td colspan="3" style="text-align: left;">
+Total Rows: 3, Total Columns: 3
 </td>
 </tr>
 </tbody>
@@ -3234,7 +3274,7 @@ Total Rows: 1, Total Columns: 2
 <section id="task-1" class="level2">
 <h2 class="anchored" data-anchor-id="task-1">Task 1</h2>
 <p>How many records are in the country table?</p>
-<div id="d398fcff" class="cell" data-execution_count="3">
+<div id="ab614ec5" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How many records are in the world_bank_data.wdi_country table?</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (skills: select, aggregate)</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -3253,11 +3293,7 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
-</th>
-
-<th>
-ErrorMessage
+Row Count
 </th>
 
 </tr>
@@ -3269,18 +3305,14 @@ ErrorMessage
 <tr>
 
 <td>
-UnknownError
-</td>
-
-<td>
-Unknown Error: &#39;NoneType&#39; object has no attribute &#39;cursor&#39;
+265
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+<td colspan="1" style="text-align: left;">
+Total Rows: 1, Total Columns: 1
 </td>
 </tr>
 </tbody>
@@ -3292,7 +3324,7 @@ Total Rows: 1, Total Columns: 2
 <section id="task-2" class="level2">
 <h2 class="anchored" data-anchor-id="task-2">Task 2</h2>
 <p>Explore the first 5 records in the country table.</p>
-<div id="bfc8ffe4" class="cell" data-execution_count="4">
+<div id="53b82b6b" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">## write out the first 10 records and look at the columns</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Do you see any blanks or missing data?</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">## (skills: select, limit)</span></span>
@@ -3313,11 +3345,127 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Country Code
 </th>
 
 <th>
-ErrorMessage
+Short Name
+</th>
+
+<th>
+Table Name
+</th>
+
+<th>
+Long Name
+</th>
+
+<th>
+2-alpha code
+</th>
+
+<th>
+Currency Unit
+</th>
+
+<th>
+Special Notes
+</th>
+
+<th>
+Region
+</th>
+
+<th>
+Income Group
+</th>
+
+<th>
+WB-2 code
+</th>
+
+<th>
+National accounts base year
+</th>
+
+<th>
+National accounts reference year
+</th>
+
+<th>
+SNA price valuation
+</th>
+
+<th>
+Lending category
+</th>
+
+<th>
+Other groups
+</th>
+
+<th>
+System of National Accounts
+</th>
+
+<th>
+Alternative conversion factor
+</th>
+
+<th>
+PPP survey year
+</th>
+
+<th>
+Balance of Payments Manual in use
+</th>
+
+<th>
+External debt Reporting status
+</th>
+
+<th>
+System of trade
+</th>
+
+<th>
+Government Accounting concept
+</th>
+
+<th>
+IMF data dissemination standard
+</th>
+
+<th>
+Latest population census
+</th>
+
+<th>
+Latest household survey
+</th>
+
+<th>
+Source of most recent Income and expenditure data
+</th>
+
+<th>
+Vital registration complete
+</th>
+
+<th>
+Latest agricultural census
+</th>
+
+<th>
+Latest industrial data
+</th>
+
+<th>
+Latest trade data
+</th>
+
+<th>
+Latest water withdrawal data
 </th>
 
 </tr>
@@ -3329,18 +3477,646 @@ ErrorMessage
 <tr>
 
 <td>
-UnknownError
+ABW
 </td>
 
 <td>
-Unknown Error: &#39;NoneType&#39; object has no attribute &#39;cursor&#39;
+Aruba
+</td>
+
+<td>
+Aruba
+</td>
+
+<td>
+Aruba
+</td>
+
+<td>
+AW
+</td>
+
+<td>
+Aruban florin
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+AW
+</td>
+
+<td>
+2013
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+Value added at basic prices (VAB)
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+Country uses the 1993 System of National Accounts methodology
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+BPM6
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+General trade system
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+Enhanced General Data Dissemination System (e-GDDS)
+</td>
+
+<td>
+2020 (expected)
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+Yes
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+2018.0
+</td>
+
+<td>
+NULL
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+
+<td>
+AFE
+</td>
+
+<td>
+Africa Eastern and Southern
+</td>
+
+<td>
+Africa Eastern and Southern
+</td>
+
+<td>
+Africa Eastern and Southern
+</td>
+
+<td>
+ZH
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+26 countries, stretching from the Red Sea in the North to the Cape of Good Hope in the South (https://www.worldbank.org/en/region/afr/eastern-and-southern-africa)
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+ZH
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+AFG
+</td>
+
+<td>
+Afghanistan
+</td>
+
+<td>
+Afghanistan
+</td>
+
+<td>
+Islamic State of Afghanistan
+</td>
+
+<td>
+AF
+</td>
+
+<td>
+Afghan afghani
+</td>
+
+<td>
+The reporting period for national accounts data is designated as either calendar year basis (CY) or fiscal year basis (FY). For this country, it is fiscal year-based (fiscal year-end: March 20). Also, an estimate (PA.NUS.ATLS) of the exchange rate covers the same period and thus differs from the official exchange rate (CY).\n\nIn addition, the World Bank systematically assesses the appropriateness of official exchange rates as conversion factors. In this country, multiple or dual exchange rate activity exists and must be accounted for appropriately in underlying statistics. An alternative estimate (“alternative conversion factor” - PA.NUS.ATLS) is thus calculated as a weighted average of the different exchange rates in use in the country. Doing so better reflects economic reality and leads to more accurate cross-country comparisons and country classifications by income level. For this country, this applies to the period 1960-2006. Alternative conversion factors are used in the Atlas methodology and elsewhere in World Development Indicators as single-year conversion factors.
+</td>
+
+<td>
+South Asia
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+AF
+</td>
+
+<td>
+2016
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+Value added at basic prices (VAB)
+</td>
+
+<td>
+IDA
+</td>
+
+<td>
+HIPC
+</td>
+
+<td>
+Country uses the 2008 System of National Accounts methodology
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+BPM6
+</td>
+
+<td>
+Estimate
+</td>
+
+<td>
+General trade system
+</td>
+
+<td>
+Consolidated central government
+</td>
+
+<td>
+Enhanced General Data Dissemination System (e-GDDS)
+</td>
+
+<td>
+1979
+</td>
+
+<td>
+Demographic and Health Survey, 2015
+</td>
+
+<td>
+Integrated household survey (IHS), 2016/17
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+2018.0
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+AFW
+</td>
+
+<td>
+Africa Western and Central
+</td>
+
+<td>
+Africa Western and Central
+</td>
+
+<td>
+Africa Western and Central
+</td>
+
+<td>
+ZI
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+22 countries, stretching from the westernmost point of Africa, across the equator, and partly along the Atlantic Ocean till the Republic of Congo in the South (https://www.worldbank.org/en/region/afr/western-and-central-africa)
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+ZI
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+AGO
+</td>
+
+<td>
+Angola
+</td>
+
+<td>
+Angola
+</td>
+
+<td>
+People&#39;s Republic of Angola
+</td>
+
+<td>
+AO
+</td>
+
+<td>
+Angolan kwanza
+</td>
+
+<td>
+The World Bank systematically assesses the appropriateness of official exchange rates as conversion factors. In this country, multiple or dual exchange rate activity exists and must be accounted for appropriately in underlying statistics. An alternative estimate (“alternative conversion factor” - PA.NUS.ATLS) is thus calculated as a weighted average of the different exchange rates in use in the country. Doing so better reflects economic reality and leads to more accurate cross-country comparisons and country classifications by income level. For this country, this applies to the period 1994-2023. Alternative conversion factors are used in the Atlas methodology and elsewhere in World Development Indicators as single-year conversion factors.
+</td>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+AO
+</td>
+
+<td>
+2002
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+Value added at basic prices (VAB)
+</td>
+
+<td>
+IBRD
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+Country uses the 1993 System of National Accounts methodology
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+BPM6
+</td>
+
+<td>
+Actual
+</td>
+
+<td>
+General trade system
+</td>
+
+<td>
+Budgetary central government
+</td>
+
+<td>
+Enhanced General Data Dissemination System (e-GDDS)
+</td>
+
+<td>
+2014
+</td>
+
+<td>
+Demographic and Health Survey, 2015/16
+</td>
+
+<td>
+Integrated household survey (IHS), 2008/09
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+2018.0
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+<td colspan="31" style="text-align: left;">
+Total Rows: 5, Total Columns: 31
 </td>
 </tr>
 </tbody>
@@ -3352,7 +4128,7 @@ Total Rows: 1, Total Columns: 2
 <section id="task-3" class="level2">
 <h2 class="anchored" data-anchor-id="task-3">Task 3</h2>
 <p>List all non-countries.</p>
-<div id="b066070f" class="cell" data-execution_count="5">
+<div id="0d4d794d" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">## task 3</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Which records are NOT for countries, that is they&#39;re for regions or groups of countries.</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">## How can you tell?</span></span>
@@ -3378,11 +4154,11 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Long Name
 </th>
 
 <th>
-ErrorMessage
+Region
 </th>
 
 </tr>
@@ -3394,18 +4170,582 @@ ErrorMessage
 <tr>
 
 <td>
-UnknownError
+Africa Eastern and Southern
 </td>
 
 <td>
-Unknown Error: &#39;NoneType&#39; object has no attribute &#39;cursor&#39;
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Africa Western and Central
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Arab World
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Central Europe and the Baltics
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Caribbean small states
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+East Asia &amp; Pacific (excluding high income)
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Early-demographic dividend
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Europe &amp; Central Asia (excluding high income)
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Euro area
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+European Union
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Fragile and conflict affected situations
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+High income
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Heavily indebted poor countries (HIPC)
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+IBRD only
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+IDA &amp; IBRD total
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+IDA total
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+IDA blend
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+IDA only
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean (excluding high income)
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Least developed countries: UN classification
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Low income
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Low &amp; middle income
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Late-demographic dividend
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle income
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa (excluding high income)
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+North America
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+OECD members
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Other small states
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Pre-demographic dividend
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Pacific island small states
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Post-demographic dividend
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa (excluding high income)
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Small states
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+East Asia &amp; Pacific (IDA &amp; IBRD)
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Europe &amp; Central Asia (IDA &amp; IBRD)
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean (IDA &amp; IBRD)
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa (IDA &amp; IBRD)
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia (IDA &amp; IBRD)
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa (IDA &amp; IBRD)
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+World
+</td>
+
+<td>
+NULL
 </td>
 
 </tr>
 
 <tr>
 <td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+Total Rows: 48, Total Columns: 2
 </td>
 </tr>
 </tbody>
@@ -3417,7 +4757,7 @@ Total Rows: 1, Total Columns: 2
 <section id="task-4" class="level2">
 <h2 class="anchored" data-anchor-id="task-4">Task 4</h2>
 <p>Create your own copy of WDI_Country containing just countries.</p>
-<div id="3dbd1589" class="cell" data-execution_count="6">
+<div id="d4e02923" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">## task 4</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">## The WDI table clearly contains information for countries and non-countries</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">## using CREATE TABLE ... SELECT from WHERE syntax.</span></span>
@@ -3443,11 +4783,7 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
-</th>
-
-<th>
-ErrorMessage
+Errors
 </th>
 
 </tr>
@@ -3459,11 +4795,23 @@ ErrorMessage
 <tr>
 
 <td>
-ConnectionError
+&lt;hr/&gt;Error executing statement: &lt;b&gt;drop table if exists peopleroles drop table if exists peopleskills&lt;/b&gt;&lt;br/&gt; Error: (pymysql.err.ProgrammingError) (1064, “You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;drop table if exists peopleskills&#39; at line 1”)\n[SQL: drop table if exists peopleroles drop table if exists peopleskills]\n(Background on this error at: https://sqlalche.me/e/20/f405)&lt;br/&gt;
 </td>
 
+</tr>
+
+<tr>
+
 <td>
-No valid connection. See above.
+&lt;hr/&gt;Error executing statement: &lt;b&gt;drop table if exists roles&lt;/b&gt;&lt;br/&gt; Error: (pymysql.err.OperationalError) (3730, “Cannot drop table &#39;roles&#39; referenced by a foreign key constraint &#39;peopleroles_ibfk_2&#39; on table &#39;peopleroles&#39;.”)\n[SQL: drop table if exists roles]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)&lt;br/&gt;
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+&lt;hr/&gt;Error executing statement: &lt;b&gt;drop table if exists people&lt;/b&gt;&lt;br/&gt; Error: (pymysql.err.OperationalError) (3730, “Cannot drop table &#39;people&#39; referenced by a foreign key constraint &#39;peopleroles_ibfk_1&#39; on table &#39;peopleroles&#39;.”)\n[SQL: drop table if exists people]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)&lt;br/&gt;
 </td>
 
 </tr>
@@ -3473,7 +4821,7 @@ No valid connection. See above.
 </table>
 </div>
 </div>
-<div id="c0116a40" class="cell" data-execution_count="7">
+<div id="d0c05d87" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create table</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>execute_ddl(cnx,<span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">CREATE table wdi_country as</span></span>
@@ -3486,45 +4834,8 @@ No valid connection. See above.
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<table class="dataframe table table-sm table-striped small">
-
-<thead>
-
-<tr>
-
-<th>
-ErrorType
-</th>
-
-<th>
-ErrorMessage
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td>
-ConnectionError
-</td>
-
-<td>
-No valid connection. See above.
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
 </div>
-</div>
-<div id="48d83b55" class="cell" data-execution_count="8">
+<div id="3efccf2e" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show number of records</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx,<span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">select count(*) from wdi_country</span></span>
@@ -3537,11 +4848,7 @@ No valid connection. See above.
 <tr>
 
 <th>
-ErrorType
-</th>
-
-<th>
-ErrorMessage
+count(*)
 </th>
 
 </tr>
@@ -3553,18 +4860,14 @@ ErrorMessage
 <tr>
 
 <td>
-UnknownError
-</td>
-
-<td>
-Unknown Error: &#39;NoneType&#39; object has no attribute &#39;cursor&#39;
+217
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+<td colspan="1" style="text-align: left;">
+Total Rows: 1, Total Columns: 1
 </td>
 </tr>
 </tbody>
@@ -3576,7 +4879,7 @@ Total Rows: 1, Total Columns: 2
 <section id="task-5" class="level2">
 <h2 class="anchored" data-anchor-id="task-5">Task 5</h2>
 <p>According to the World Bank, in 2020 there were how many countries in the world?</p>
-<div id="28e9ac29" class="cell" data-execution_count="9">
+<div id="81eeca12" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">## (skills: select, aggregate)</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -3591,11 +4894,7 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
-</th>
-
-<th>
-ErrorMessage
+count(*)
 </th>
 
 </tr>
@@ -3607,18 +4906,14 @@ ErrorMessage
 <tr>
 
 <td>
-UnknownError
-</td>
-
-<td>
-Unknown Error: &#39;NoneType&#39; object has no attribute &#39;cursor&#39;
+217
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+<td colspan="1" style="text-align: left;">
+Total Rows: 1, Total Columns: 1
 </td>
 </tr>
 </tbody>
@@ -3630,7 +4925,7 @@ Total Rows: 1, Total Columns: 2
 <section id="task-6" class="level2">
 <h2 class="anchored" data-anchor-id="task-6">Task 6</h2>
 <p>What are all unique values of region in the wdi_country table?</p>
-<div id="2982384e" class="cell" data-execution_count="10">
+<div id="197bc635" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Let&#39;s investigate the country_region field.</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">## What is the domain of the country_region field? That is,</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">## what are the unique values found there?</span></span>
@@ -3658,11 +4953,11 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Region
 </th>
 
 <th>
-ErrorMessage
+count(*)
 </th>
 
 </tr>
@@ -3674,18 +4969,90 @@ ErrorMessage
 <tr>
 
 <td>
-UnknownError
+East Asia &amp; Pacific
 </td>
 
 <td>
-Unknown Error: &#39;NoneType&#39; object has no attribute &#39;cursor&#39;
+37
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+<td>
+58
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+42
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+21
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+North America
+</td>
+
+<td>
+3
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+8
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+48
 </td>
 
 </tr>
 
 <tr>
 <td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+Total Rows: 7, Total Columns: 2
 </td>
 </tr>
 </tbody>
@@ -3697,7 +5064,7 @@ Total Rows: 1, Total Columns: 2
 <section id="task-7" class="level2">
 <h2 class="anchored" data-anchor-id="task-7">Task 7</h2>
 <p>How many countries are in each region?</p>
-<div id="a3bf3588" class="cell" data-execution_count="11">
+<div id="52cf038c" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">## How many countries are in each region?</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">## (skills: select, aggregate, group by, order by)</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -3720,15 +5087,45 @@ Total Rows: 1, Total Columns: 2
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">ErrorType</th>
-<th data-quarto-table-cell-role="th">ErrorMessage</th>
+<th data-quarto-table-cell-role="th">Region</th>
+<th data-quarto-table-cell-role="th">Count</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>UnknownError</td>
-<td>Unknown Error: &#39;NoneType&#39; object has no attrib...</td>
+<td>Europe &amp; Central Asia</td>
+<td>58</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Sub-Saharan Africa</td>
+<td>48</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Latin America &amp; Caribbean</td>
+<td>42</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>East Asia &amp; Pacific</td>
+<td>37</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Middle East &amp; North Africa</td>
+<td>21</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>South Asia</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>North America</td>
+<td>3</td>
 </tr>
 </tbody>
 </table>
@@ -3740,7 +5137,7 @@ Total Rows: 1, Total Columns: 2
 <section id="task-8" class="level2">
 <h2 class="anchored" data-anchor-id="task-8">Task 8</h2>
 <p>List the country full names and regions for all countries in north america.</p>
-<div id="36d5342b" class="cell" data-execution_count="12">
+<div id="583078dc" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">## List the country full names and regions for all countries in north america</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">## (skills: select, where, order by)</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -3760,15 +5157,25 @@ Total Rows: 1, Total Columns: 2
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">ErrorType</th>
-<th data-quarto-table-cell-role="th">ErrorMessage</th>
+<th data-quarto-table-cell-role="th">Long Name</th>
+<th data-quarto-table-cell-role="th">Region</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>UnknownError</td>
-<td>Unknown Error: &#39;NoneType&#39; object has no attrib...</td>
+<td>The Bermudas</td>
+<td>North America</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Canada</td>
+<td>North America</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>United States of America</td>
+<td>North America</td>
 </tr>
 </tbody>
 </table>
@@ -3779,7 +5186,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-9" class="level2">
 <h2 class="anchored" data-anchor-id="task-9">Task 9</h2>
-<div id="71339645" class="cell" data-execution_count="13">
+<div id="2a8ef2f3" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">## The last World Cup soccer tournament was hosted by Qatar.</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">## What region contains Qatar?  List the region, country short name and full name</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">## (skills: select, where)</span></span>
@@ -3798,15 +5205,15 @@ Total Rows: 1, Total Columns: 2
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">ErrorType</th>
-<th data-quarto-table-cell-role="th">ErrorMessage</th>
+<th data-quarto-table-cell-role="th">Long Name</th>
+<th data-quarto-table-cell-role="th">Region</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>UnknownError</td>
-<td>Unknown Error: &#39;NoneType&#39; object has no attrib...</td>
+<td>State of Qatar</td>
+<td>Middle East &amp; North Africa</td>
 </tr>
 </tbody>
 </table>
@@ -3817,7 +5224,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-10" class="level2">
 <h2 class="anchored" data-anchor-id="task-10">Task 10</h2>
-<div id="6647add1" class="cell" data-execution_count="14">
+<div id="76a1f98e" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">## There are two abbreviation fields in the data country_abbr and country_wb_abbr.</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">## List the country code, short name, abbr, wb_abbr and region for all the countries</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">## where the abbr and wb_abbr are different.</span></span>
@@ -3838,11 +5245,23 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Country Code
 </th>
 
 <th>
-ErrorMessage
+Short Name
+</th>
+
+<th>
+2-alpha code
+</th>
+
+<th>
+WB-2 code
+</th>
+
+<th>
+Region
 </th>
 
 </tr>
@@ -3854,18 +5273,126 @@ ErrorMessage
 <tr>
 
 <td>
-UnknownError
+COD
 </td>
 
 <td>
-Unknown Error: &#39;NoneType&#39; object has no attribute &#39;cursor&#39;
+Dem. Rep. Congo
+</td>
+
+<td>
+CD
+</td>
+
+<td>
+ZR
+</td>
+
+<td>
+Sub-Saharan Africa
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+
+<td>
+PSE
+</td>
+
+<td>
+West Bank and Gaza
+</td>
+
+<td>
+PS
+</td>
+
+<td>
+GZ
+</td>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+SRB
+</td>
+
+<td>
+Serbia
+</td>
+
+<td>
+RS
+</td>
+
+<td>
+YF
+</td>
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+TLS
+</td>
+
+<td>
+Timor-Leste
+</td>
+
+<td>
+TL
+</td>
+
+<td>
+TP
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+YEM
+</td>
+
+<td>
+Yemen
+</td>
+
+<td>
+YE
+</td>
+
+<td>
+RY
+</td>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+</tr>
+
+<tr>
+<td colspan="5" style="text-align: left;">
+Total Rows: 5, Total Columns: 5
 </td>
 </tr>
 </tbody>
@@ -3876,7 +5403,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-11" class="level2">
 <h2 class="anchored" data-anchor-id="task-11">Task 11</h2>
-<div id="65de5e8a" class="cell" data-execution_count="15">
+<div id="cea8ef92" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Now, let&#39;s investigate the &quot;income category&quot; field.</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">## List the income categories and the number of countries in each</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">## income category in descending order of most countries to least.</span></span>
@@ -3897,11 +5424,11 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Income Group
 </th>
 
 <th>
-ErrorMessage
+count(*)
 </th>
 
 </tr>
@@ -3913,18 +5440,66 @@ ErrorMessage
 <tr>
 
 <td>
-UnknownError
+High income
 </td>
 
 <td>
-Unknown Error: &#39;NoneType&#39; object has no attribute &#39;cursor&#39;
+85
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+54
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+51
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Low income
+</td>
+
+<td>
+26
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+NULL
+</td>
+
+<td>
+1
 </td>
 
 </tr>
 
 <tr>
 <td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+Total Rows: 5, Total Columns: 2
 </td>
 </tr>
 </tbody>
@@ -3935,7 +5510,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-12" class="level2">
 <h2 class="anchored" data-anchor-id="task-12">Task 12</h2>
-<div id="060ffee0" class="cell" data-execution_count="16">
+<div id="0ccac83d" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Mystery task.  Looking at the table from Task 11 (anything odd?) write the</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">## next obvious query based on the results in the table.</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">## At a minimum, your query should put country short name in the first column.</span></span>
@@ -3956,11 +5531,11 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Short Name
 </th>
 
 <th>
-ErrorMessage
+Income Group
 </th>
 
 </tr>
@@ -3972,11 +5547,11 @@ ErrorMessage
 <tr>
 
 <td>
-UnknownError
+Venezuela
 </td>
 
 <td>
-Unknown Error: &#39;NoneType&#39; object has no attribute &#39;cursor&#39;
+NULL
 </td>
 
 </tr>
@@ -3994,7 +5569,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-13" class="level2">
 <h2 class="anchored" data-anchor-id="task-13">Task 13</h2>
-<div id="432d2b45" class="cell" data-execution_count="17">
+<div id="efccc29c" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">## OK, this HAS to be an error. Let&#39;s make a assumption that the country</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">## in question, because they are oil-rich, are &quot;high income&quot;. </span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Write an update comment to correct the issue.</span></span>
@@ -4006,45 +5581,8 @@ Total Rows: 1, Total Columns: 2
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="st">SET `Income Group` = &#39;High income&#39;</span></span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE `Income Group` IS NULL;</span></span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
-<table class="dataframe table table-sm table-striped small">
-
-<thead>
-
-<tr>
-
-<th>
-ErrorType
-</th>
-
-<th>
-ErrorMessage
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td>
-ConnectionError
-</td>
-
-<td>
-No valid connection. See above.
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
 </div>
-</div>
-<div id="7fded893" class="cell" data-execution_count="18">
+<div id="ce14f7ee" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Now, display the country again to verify the change stuck!</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -4061,11 +5599,11 @@ No valid connection. See above.
 <tr>
 
 <th>
-ErrorType
+Short Name
 </th>
 
 <th>
-ErrorMessage
+Income Group
 </th>
 
 </tr>
@@ -4077,11 +5615,11 @@ ErrorMessage
 <tr>
 
 <td>
-UnknownError
+Venezuela
 </td>
 
 <td>
-Unknown Error: &#39;NoneType&#39; object has no attribute &#39;cursor&#39;
+NULL
 </td>
 
 </tr>
@@ -4099,7 +5637,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-14" class="level2">
 <h2 class="anchored" data-anchor-id="task-14">Task 14</h2>
-<div id="0a4215cd" class="cell" data-execution_count="19">
+<div id="ec03d8b4" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Write a single query that show the number of countries in each</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">## &quot;Region&quot;-&quot;Income Group&quot; pair.  The table should have 3 columns:</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">## region, income group, and no.of.countries.</span></span>
@@ -4120,11 +5658,15 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Region
 </th>
 
 <th>
-ErrorMessage
+Income Group
+</th>
+
+<th>
+No. of countries
 </th>
 
 </tr>
@@ -4136,18 +5678,374 @@ ErrorMessage
 <tr>
 
 <td>
-UnknownError
+Europe &amp; Central Asia
 </td>
 
 <td>
-Unknown Error: &#39;NoneType&#39; object has no attribute &#39;cursor&#39;
+High income
+</td>
+
+<td>
+40
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+22
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+19
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+19
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+18
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+15
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+15
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+12
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+9
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+8
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+7
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+6
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+6
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+4
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+4
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+North America
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+3
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+3
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+2
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+1
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+1
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+1
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+1
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+1
+</td>
+
+</tr>
+
+<tr>
+<td colspan="3" style="text-align: left;">
+Total Rows: 23, Total Columns: 3
 </td>
 </tr>
 </tbody>
@@ -4158,7 +6056,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-15" class="level2">
 <h2 class="anchored" data-anchor-id="task-15">Task 15</h2>
-<div id="94145bdc" class="cell" data-execution_count="20">
+<div id="92c12dac" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Examine the result from task 14. It would be really cool to</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">## present the results of this table in a 2-D form, with</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">## columns for each income category (high, upper middle, lower middle, low, other)</span></span>
@@ -4193,11 +6091,27 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Region
 </th>
 
 <th>
-ErrorMessage
+High income
+</th>
+
+<th>
+Upper middle income
+</th>
+
+<th>
+Lower middle income
+</th>
+
+<th>
+Low income
+</th>
+
+<th>
+Total
 </th>
 
 </tr>
@@ -4209,18 +6123,202 @@ ErrorMessage
 <tr>
 
 <td>
-UnknownError
+East Asia &amp; Pacific
 </td>
 
 <td>
-Unknown Error: &#39;NoneType&#39; object has no attribute &#39;cursor&#39;
+15.0
+</td>
+
+<td>
+9.0
+</td>
+
+<td>
+12.0
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+37
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+<td>
+40.0
+</td>
+
+<td>
+15.0
+</td>
+
+<td>
+3.0
+</td>
+
+<td>
+0.0
+</td>
+
+<td>
+58
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+18.0
+</td>
+
+<td>
+19.0
+</td>
+
+<td>
+4.0
+</td>
+
+<td>
+0.0
+</td>
+
+<td>
+42
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+8.0
+</td>
+
+<td>
+4.0
+</td>
+
+<td>
+7.0
+</td>
+
+<td>
+2.0
+</td>
+
+<td>
+21
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+North America
+</td>
+
+<td>
+3.0
+</td>
+
+<td>
+0.0
+</td>
+
+<td>
+0.0
+</td>
+
+<td>
+0.0
+</td>
+
+<td>
+3
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+0.0
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+6.0
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+8
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+6.0
+</td>
+
+<td>
+19.0
+</td>
+
+<td>
+22.0
+</td>
+
+<td>
+48
+</td>
+
+</tr>
+
+<tr>
+<td colspan="6" style="text-align: left;">
+Total Rows: 7, Total Columns: 6
 </td>
 </tr>
 </tbody>
@@ -4231,7 +6329,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-16" class="level2">
 <h2 class="anchored" data-anchor-id="task-16">Task 16</h2>
-<div id="de153b4d" class="cell" data-execution_count="21">
+<div id="28d8ba06" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Wow! what a cool table!  It is very interesting to see where the money</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">## sits around the world.  Using the general approach from Task 14 above</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">## and write a query to return the single region with the most lower-income</span></span>
@@ -4265,11 +6363,15 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Low income countries
 </th>
 
 <th>
-ErrorMessage
+Region
+</th>
+
+<th>
+Income Group
 </th>
 
 </tr>
@@ -4281,18 +6383,22 @@ ErrorMessage
 <tr>
 
 <td>
-UnknownError
+22
 </td>
 
 <td>
-Unknown Error: &#39;NoneType&#39; object has no attribute &#39;cursor&#39;
+Sub-Saharan Africa
+</td>
+
+<td>
+Low income
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+<td colspan="3" style="text-align: left;">
+Total Rows: 1, Total Columns: 3
 </td>
 </tr>
 </tbody>
@@ -4303,7 +6409,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-17" class="level2">
 <h2 class="anchored" data-anchor-id="task-17">Task 17</h2>
-<div id="7e8cf204" class="cell" data-execution_count="22">
+<div id="64a13d1b" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Are you getting the hand of this? Good! We need to take a look at all</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">## the countries in the same region and with the same income category as</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">## the Marshall Islands.</span></span>
@@ -4335,11 +6441,19 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Country Code
 </th>
 
 <th>
-ErrorMessage
+Short Name
+</th>
+
+<th>
+Region
+</th>
+
+<th>
+Income Group
 </th>
 
 </tr>
@@ -4351,18 +6465,186 @@ ErrorMessage
 <tr>
 
 <td>
-UnknownError
+CHN
 </td>
 
 <td>
-Unknown Error: &#39;NoneType&#39; object has no attribute &#39;cursor&#39;
+China
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+
+<td>
+FJI
+</td>
+
+<td>
+Fiji
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+IDN
+</td>
+
+<td>
+Indonesia
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+MYS
+</td>
+
+<td>
+Malaysia
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+MHL
+</td>
+
+<td>
+Marshall Islands
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+MNG
+</td>
+
+<td>
+Mongolia
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+THA
+</td>
+
+<td>
+Thailand
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+TON
+</td>
+
+<td>
+Tonga
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+TUV
+</td>
+
+<td>
+Tuvalu
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+</tr>
+
+<tr>
+<td colspan="4" style="text-align: left;">
+Total Rows: 9, Total Columns: 4
 </td>
 </tr>
 </tbody>
@@ -4373,7 +6655,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-18" class="level2">
 <h2 class="anchored" data-anchor-id="task-18">Task 18</h2>
-<div id="b723920d" class="cell" data-execution_count="23">
+<div id="705f810d" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">## OK - let&#39;s raise the heat in the kitchen! Review the output from task 14.</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">## You&#39;ll see that some of the regions do not contain all of the income</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">## levels.  For example, the Europe &amp; Central Asia region does not have</span></span>
@@ -4422,11 +6704,15 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Region
 </th>
 
 <th>
-ErrorMessage
+Income Group
+</th>
+
+<th>
+Missing (0 means missing combination)
 </th>
 
 </tr>
@@ -4438,18 +6724,214 @@ ErrorMessage
 <tr>
 
 <td>
-UnknownError
+East Asia &amp; Pacific
 </td>
 
 <td>
-Unknown Error: &#39;NoneType&#39; object has no attribute &#39;cursor&#39;
+NULL
+</td>
+
+<td>
+0
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+North America
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+North America
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+North America
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+North America
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+<td colspan="3" style="text-align: left;">
+Total Rows: 13, Total Columns: 3
 </td>
 </tr>
 </tbody>
@@ -4460,7 +6942,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-19" class="level2">
 <h2 class="anchored" data-anchor-id="task-19">Task 19</h2>
-<div id="9ebba243" class="cell" data-execution_count="24">
+<div id="761ae0e8" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Hot enough, yet?  Let&#39;s go for ghost-pepper HOT!  Now let&#39;s build some</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">## percentage tables.  For example, across the entire sample, what</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">## is the percentage of total countries in each income category?</span></span>
@@ -4530,11 +7012,31 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Region
 </th>
 
 <th>
-ErrorMessage
+Income Group
+</th>
+
+<th>
+Country Count
+</th>
+
+<th>
+Sum of Countries in Region
+</th>
+
+<th>
+Sum of Countries by Income
+</th>
+
+<th>
+Total Sum Countries
+</th>
+
+<th>
+Percent of Total
 </th>
 
 </tr>
@@ -4546,18 +7048,710 @@ ErrorMessage
 <tr>
 
 <td>
-UnknownError
+East Asia &amp; Pacific
 </td>
 
 <td>
-Unknown Error: &#39;NoneType&#39; object has no attribute &#39;cursor&#39;
+High income
+</td>
+
+<td>
+15
+</td>
+
+<td>
+37.0
+</td>
+
+<td>
+85.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+6.9124
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+1
+</td>
+
+<td>
+37.0
+</td>
+
+<td>
+26.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+0.4608
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+12
+</td>
+
+<td>
+37.0
+</td>
+
+<td>
+51.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+5.5300
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+9
+</td>
+
+<td>
+37.0
+</td>
+
+<td>
+54.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+4.1475
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+40
+</td>
+
+<td>
+58.0
+</td>
+
+<td>
+85.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+18.4332
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+3
+</td>
+
+<td>
+58.0
+</td>
+
+<td>
+51.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+1.3825
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+15
+</td>
+
+<td>
+58.0
+</td>
+
+<td>
+54.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+6.9124
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+18
+</td>
+
+<td>
+42.0
+</td>
+
+<td>
+85.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+8.2949
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+4
+</td>
+
+<td>
+42.0
+</td>
+
+<td>
+51.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+1.8433
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+19
+</td>
+
+<td>
+42.0
+</td>
+
+<td>
+54.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+8.7558
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+8
+</td>
+
+<td>
+21.0
+</td>
+
+<td>
+85.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+3.6866
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+2
+</td>
+
+<td>
+21.0
+</td>
+
+<td>
+26.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+0.9217
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+7
+</td>
+
+<td>
+21.0
+</td>
+
+<td>
+51.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+3.2258
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+4
+</td>
+
+<td>
+21.0
+</td>
+
+<td>
+54.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+1.8433
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+North America
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+3
+</td>
+
+<td>
+3.0
+</td>
+
+<td>
+85.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+1.3825
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+1
+</td>
+
+<td>
+8.0
+</td>
+
+<td>
+26.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+0.4608
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+6
+</td>
+
+<td>
+8.0
+</td>
+
+<td>
+51.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+2.7650
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+1
+</td>
+
+<td>
+8.0
+</td>
+
+<td>
+54.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+0.4608
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+1
+</td>
+
+<td>
+48.0
+</td>
+
+<td>
+85.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+0.4608
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+22
+</td>
+
+<td>
+48.0
+</td>
+
+<td>
+26.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+10.1382
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+19
+</td>
+
+<td>
+48.0
+</td>
+
+<td>
+51.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+8.7558
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+6
+</td>
+
+<td>
+48.0
+</td>
+
+<td>
+54.0
+</td>
+
+<td>
+217
+</td>
+
+<td>
+2.7650
+</td>
+
+</tr>
+
+<tr>
+<td colspan="7" style="text-align: left;">
+Total Rows: 22, Total Columns: 7
 </td>
 </tr>
 </tbody>
@@ -4568,7 +7762,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-20" class="level2">
 <h2 class="anchored" data-anchor-id="task-20">Task 20</h2>
-<div id="cc96339e" class="cell" data-execution_count="25">
+<div id="1c6e5ac8" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">## SLAM DUNK TIME!  Using the resulting table CTEs from Task 19,</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">## print table similar to the table in Task 15, with Income group in the</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">## columns, Region in the rows and Percent of total in each cell of the table.</span></span>
@@ -4645,11 +7839,11 @@ ErrorMessage
 <tr>
 
 <td>
-UnknownError
+OperationalError
 </td>
 
 <td>
-Unknown Error: &#39;NoneType&#39; object has no attribute &#39;cursor&#39;
+Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;r.Region&#39; in &#39;field list&#39;”)\n[SQL: \nWITH region_income_counts AS (\n SELECT\n <code>Region</code>,\n <code>Income Group</code>,\n COUNT(<em>) AS <code>Country Count</code>\n FROM wdi_country\n GROUP BY <code>Region</code>, <code>Income Group</code>\n),\nregion_totals AS (\n SELECT\n <code>Region</code>,\n SUM(<code>Country Count</code>) AS <code>Region Total</code>\n FROM region_income_counts\n GROUP BY <code>Region</code>\n),\nincome_totals AS (\n SELECT\n <code>Income Group</code>,\n SUM(<code>Country Count</code>) AS <code>Income Group Total</code>\n FROM region_income_counts\n GROUP BY <code>Income Group</code>\n),\ntotal_count AS (\n SELECT COUNT(</em>) AS <code>Total Countries</code> FROM wdi_country\n)\n\n\nSELECT\n r.<code>Region</code>,\n i.<code>Income Group</code>,\n ric.<code>Country Count</code>,\n rt.<code>Region Total</code>,\n it.<code>Income Group Total</code>,\n tc.<code>Total Countries</code>,\n (ric.<code>Country Count</code> / tc.<code>Total Countries</code>) * 100 AS <code>Percentage of Total</code>\nFROM\n region_income_counts ric\nJOIN\n region_totals rt ON ric.<code>Region</code> = rt.<code>Region</code>\nJOIN\n income_totals it ON ric.<code>Income Group</code> = it.<code>Income Group</code>\nJOIN\n total_count tc\nORDER BY\n r.<code>Region</code>, i.<code>Income Group</code>;\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
 </td>
 
 </tr>
@@ -4667,7 +7861,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-21" class="level2">
 <h2 class="anchored" data-anchor-id="task-21">Task 21</h2>
-<div id="738540c7" class="cell" data-execution_count="26">
+<div id="c4f178b2" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">## ANOTHER DUNK!  Using the resulting table CTEs from Task 19,</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">## print a table listing the number, totals and percentage of countries</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">## by income category.</span></span>
@@ -4719,15 +7913,45 @@ Total Rows: 1, Total Columns: 2
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">ErrorType</th>
-<th data-quarto-table-cell-role="th">ErrorMessage</th>
+<th data-quarto-table-cell-role="th">Income Group</th>
+<th data-quarto-table-cell-role="th">Country Count</th>
+<th data-quarto-table-cell-role="th">Income Group Total</th>
+<th data-quarto-table-cell-role="th">Total Countries</th>
+<th data-quarto-table-cell-role="th">Percentage of Total</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>UnknownError</td>
-<td>Unknown Error: &#39;NoneType&#39; object has no attrib...</td>
+<td>High income</td>
+<td>85</td>
+<td>85.0</td>
+<td>217</td>
+<td>39.1705</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Low income</td>
+<td>26</td>
+<td>26.0</td>
+<td>217</td>
+<td>11.9816</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Lower middle income</td>
+<td>51</td>
+<td>51.0</td>
+<td>217</td>
+<td>23.5023</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Upper middle income</td>
+<td>54</td>
+<td>54.0</td>
+<td>217</td>
+<td>24.8848</td>
 </tr>
 </tbody>
 </table>
