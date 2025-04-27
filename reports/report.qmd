@@ -28,7 +28,7 @@ cnx,config = create_db_wrapper( config_map )
 ```{python}
 # Do a quick test of the connection and trap the errors better!
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 select
   table_schema, table_name, table_rows
 from
@@ -54,7 +54,7 @@ How many records are in the country table?
 # (skills: select, aggregate)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 select
  count(*) as "Row Count"
 from
@@ -77,7 +77,7 @@ Explore the first 5 records in the country table.
 ## (skills: select, limit)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 select
  *
 from
@@ -105,7 +105,7 @@ List all non-countries.
 ## (skills: select, where)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 select
  `Long Name`, `Region`
 from
@@ -163,7 +163,7 @@ where
 
 ```{python}
 # show number of records
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 select count(*) from wdi_country
 """)
 ```
@@ -179,7 +179,7 @@ According to the World Bank, in 2020 there were how many countries in the world?
 ## (skills: select, aggregate)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 select count(*) from wdi_country;
 """)
 
@@ -201,7 +201,7 @@ What are all unique values of region in the wdi_country table?
 ## (skills: select, aggregate, order by)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 select
  `Region`, count(*)
 from
@@ -296,7 +296,7 @@ where `Short Name` = 'Qatar'
 ## (skills: select, where, order by)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 select `Country Code`, `Short Name`, `2-alpha code`, `WB-2 code`,`Region`
 from wdi_country
 where
@@ -317,7 +317,7 @@ where
 ## (skills: select, aggregate, group by, order by)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 select `Income Group`,count(*)
 from wdi_country
 group by `Income Group`
@@ -339,7 +339,7 @@ order by count(*) desc;
 ## in the first column.
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 SELECT `Short Name`, `Income Group`
 FROM wdi_country
 WHERE `Income Group` IS NULL;
@@ -371,7 +371,7 @@ WHERE `Income Group` IS NULL;
 ## Now, display the country again to verify the change stuck!
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 SELECT `Short Name`, `Income Group`
 FROM wdi_country
 WHERE `Short Name` = 'Venezuela';
@@ -391,7 +391,7 @@ WHERE `Short Name` = 'Venezuela';
 ## (skills: select, aggregate, group by, order by)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 SELECT `Region`, `Income Group`, COUNT(*) AS `No. of countries`
 FROM wdi_country
 GROUP BY `Region`, `Income Group`
@@ -420,7 +420,7 @@ ORDER BY `No. of countries` DESC;
 ## (skills: select, aggregate, group by, nested query)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 SELECT
    `Region`,
    SUM(CASE WHEN `Income Group` = 'High income' THEN 1 ELSE 0 END) AS `High income`,
@@ -455,7 +455,7 @@ ORDER BY `Region`;
 ## (skills: select, aggregate, group by, nested query, order by, limit)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 SELECT
    COUNT(*) AS `Low income countries`,
    `Region`,
@@ -484,7 +484,7 @@ LIMIT 1;
 ## (skills: select, where, subquery)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 SELECT
    `Country Code`,
    `Short Name`,
@@ -524,7 +524,7 @@ ORDER BY `Short Name`;
 ## (skills: select, where, subqueries, joins)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 SELECT
    r.`Region`,
    i.`Income Group`,
@@ -572,7 +572,7 @@ ORDER BY r.`Region`, i.`Income Group`;
 ## (skills: select, where, subqueries, joins, aggregate functions)
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 WITH region_income_counts AS (
    SELECT
        `Region`,
@@ -633,7 +633,7 @@ ORDER BY
 ## columns, Region in the rows and Percent of total in each cell of the table.
 
 
-run_sql_and_return_df(cnx,"""
+run_sql_and_return_html(cnx,"""
 WITH region_income_counts AS (
    SELECT
        `Region`,
